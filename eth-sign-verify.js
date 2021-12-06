@@ -14,7 +14,8 @@ async function sign_message() {
     if (document.getElementById("hash_check").checked) {
         message = web3.utils.sha3(message)
     }
-    var accounts = await web3.eth.getAccounts()
+//    var accounts = await web3.eth.getAccounts()
+    var accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     var signature = await web3.eth.personal.sign(message, accounts[0])
     document.getElementById("signature_output").innerText = signature
 }
